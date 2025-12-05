@@ -3,35 +3,59 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/index-view.jpg'; 
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero-image-container {
+				margin-bottom: 2em; /* 图片和标题之间的距离 */
+			}
+			.hero-image-container img {
+				display: block;
+				margin: 0 auto;     /* 居中显示 */
+				border-radius: 12px;/* 圆角 */
+				box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 阴影 */
+				
+				/* 关键：限制图片大小 */
+				width: 100%;
+				max-width: 800px;   /* 最大宽度，可根据喜好调整 */
+				height: auto;
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
+			<div class="hero-image-container">
+				<Image 
+					src={heroImage} 
+					alt="Home page hero image" 
+					loading="eager" 
+				/>
+			</div>
 			<h1> Hello, my friend!</h1>
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				Welcome to <a href="https://momocainiao.github.io/">my blog </a>. 
+				Here, I document my thoughts and explorations across learning, work, and everyday life
+				 — covering technical notes, data science practices, algorithm insights, tool usage tips, 
+				 and occasional reflections. I aim to explain complex ideas in simple ways, organize scattered 
+				 experiences into something structured, and leave a trace of the growth along my journey.
 			</p>
 			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+				If any of these posts offer you a bit of inspiration or help you avoid a few detours, then this blog has fulfilled its purpose.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
+			<p>Here are a few ideas on how to get started with my blog:</p>
 			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+				<li>Explore my latest movie thoughts <a href="https://momocainiao.github.io/category/Movies"><code>Movies</code></a></li>
+				<li>Read my notebooks <a href="https://momocainiao.github.io/category/Notebooks"><code>Notebooks</code></a></li>
+				<li>Check out my ongoing projects and experiments <a href="https://momocainiao.github.io/category/Projects"><code>Projects</code></a></li>
+				<li>Take a look at my life updates <a href="https://momocainiao.github.io/category/Life"><code>Life</code></a></li>
+				<li>Learn more about me <a href="https://momocainiao.github.io/about/"><code>About</code></a></li>
 			</ul>
 		</main>
 		<Footer />

@@ -8,7 +8,18 @@ import HeaderLink from './HeaderLink.astro';
 		<h2><a href="/">{SITE_TITLE}</a></h2>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
+
+            <!-- 下拉菜单部分 -->
+            <div class="dropdown">
+                <HeaderLink href="/blog" class="dropbtn">Blog ▾</HeaderLink>
+                <div class="dropdown-content">
+                    <a href="/category/Movies">Movies</a>
+                    <a href="/category/Notebooks">Notebooks</a>
+                    <a href="/category/Projects">Projects</a>
+                    <a href="/category/Life">Life</a>
+                </div>
+            </div>
+
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 		<div class="social-links">
@@ -48,6 +59,7 @@ import HeaderLink from './HeaderLink.astro';
 		</div>
 	</nav>
 </header>
+
 <style>
 	header {
 		margin: 0;
@@ -88,4 +100,47 @@ import HeaderLink from './HeaderLink.astro';
 			display: none;
 		}
 	}
+
+    /* 👇👇👇 新增：下拉菜单的 CSS 样式 (现在正确放在了 style 标签内部) 👇👇👇 */
+    
+    /* 1. 下拉菜单容器 */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* 2. 下拉内容 */
+    .dropdown-content {
+        display: none;
+        position: absolute; 
+        background-color: #ffffff;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 100;
+        border-radius: 8px;
+        padding: 5px 0;
+        top: 100%;
+        left: 0;
+    }
+
+    /* 3. 下拉菜单链接样式 */
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-bottom: none;
+        font-size: 0.9em;
+    }
+
+    /* 4. 鼠标悬停变色 */
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        color: rgb(var(--accent));
+    }
+
+    /* 5. 核心动作：悬停显示 */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
 </style>
