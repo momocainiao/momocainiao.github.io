@@ -2,7 +2,7 @@
 title: '3-2-1 Framework for Learning'
 description: '3-2-1 Framework for Learning'
 pubDate: 'Dec 07 2025'
-heroImage: '../../assets/AGI.jpg'
+heroImage: '../../assets/3-2-1.png'
 category: 'Notebooks'
 ---
 
