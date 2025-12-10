@@ -13,4 +13,4 @@ category: 'Projects'
 
 [剑指Offer 名企面试官精讲典型编程题（纪念版）-何海涛](/Offer.pdf)
 
-#### "For knowledge sharing only. No commercial use intended."
+#### “For knowledge sharing only. No commercial use intended.”

@@ -6,42 +6,26 @@ heroImage: '../../assets/Kaggle1.jpg'
 category: 'Notebooks'
 ---
 
-Kaggle offers a bridge between “ideal” problems and real-world challenges. The tasks are generally well defined, but each comes with its own difficulties, and there is rarely a fully mature solution. By interacting with other competitors in the forums, you can constantly gain new insights and learn a great deal. Even for experienced practitioners and top experts, joining Kaggle competitions often leads to fresh ideas, and the excitement of competing against teams from around the world is truly addictive.
-
-More importantly, Kaggle is a widely recognized platform in the industry. Achieving strong results in high-quality competitions is an excellent demonstration of your capabilities and adds real value to your résumé. And if you manage to win a gold medal or reach the prize pool, it becomes both an honor and a reward—an achievement that’s hard to beat.
 
 ### 1. Competition Guide
 
 For convenience, let’s first define a few terms:
 
-- **Feature**
-    - A feature variable, also called an independent variable. These are observable attributes of a sample and are typically used as model inputs.
-
-- **Label**
-    - Also called the target variable. This is the variable we aim to predict—usually the model’s output.
-
-- **Train Data**
-    - Labeled data provided by the organizers.
-
-- **Test Data**
-    - Unlabeled data used for final scoring in the competition, also provided by the organizers.
-
-- **Train Set**
-    - A subset of the train data used for training the model (commonly used in cross-validation).
-
-- **Valid Set**
-    - A subset of the train data used for model validation (also commonly used in cross-validation).
+- **Feature**: A feature variable, also called an independent variable. These are observable attributes of a sample and are typically used as model inputs.
+- **Label**: Also called the target variable. This is the variable we aim to predict—usually the model’s output.
+- **Train Data**: Labeled data provided by the organizers.
+- **Test Data**: Unlabeled data used for final scoring in the competition, also provided by the organizers.
+- **Train Set**: A subset of the train data used for training the model (commonly used in cross-validation).
+- **Valid Set**: A subset of the train data used for model validation (also commonly used in cross-validation).
 
 #### 1.1 Understanding the Problem
 
 The first step after receiving a competition task is to break it down and translate it into a corresponding machine learning problem. The most common types of machine learning tasks on Kaggle include:
 
 - Regression
-
 - Classification (binary, multi-class, multi-label)
     - Multi-class classification predicts one class from many
     - Multi-label classification predicts multiple classes
-    - For example, the Quora competition is a binary classification task because it only requires determining whether two questions have similar meanings.
 
 #### 1.2 Data Exploration
 
@@ -65,7 +49,6 @@ You can also compute the correlation coefficients between numerical variables. P
 ![blog placeholder](../../assets/Kaggle1-2.jpg)
 
 By examining the correlation matrix, you can identify highly correlated features and detect potential redundancy.
-For text variables, you can calculate metrics such as word frequency (TF), TF-IDF, text length, and more. (See detailed references for further reading.)
 
 ##### 1.2.2 Visualization
 
@@ -101,12 +84,12 @@ Simply staring at the dataset is not enough. For beginners, it’s helpful to sp
 
 - For numerical variables, you can generate new features using linear combinations or polynomial combinations.
 - For text data, there are many standard features: text length, embeddings, TF-IDF, LDA, LSI, and even deep learning–based hidden representations.
-- To understand the data more deeply, consider how the dataset was constructed—this may reveal magic features that significantly boost performance. In the Quora competition, for example, some participants shared such magic features.
+- To understand the data more deeply, consider how the dataset was constructed—this may reveal **Magic Features** that significantly boost performance. 
 - Error analysis (see Section 1.5.2) can also help you discover new features.
 
 ##### 1.4.2 Feature Selection
 
-During feature extraction, we try to generate as many features as possible. However, too many features can introduce redundancy, noise, and overfitting. That’s why we need feature selection—to reduce unnecessary features. Feature selection can speed up training and may even improve performance.
+During feature extraction, we try to generate as many features as possible. However, too many features can introduce redundancy, noise, and overfitting. That’s why we need feature selection ---- to reduce unnecessary features. Feature selection can speed up training and may even improve performance.
 
 There are many methods for feature selection. The simplest is **correlation coefficient analysis**, which measures the linear relationship between two variables within the range 
 [−1.0,1.0].
@@ -119,7 +102,6 @@ Let’s look at how to analyze a correlation matrix:
 A correlation matrix is symmetric, so you only need to look at either the lower-left or the upper-right triangle. We can break the analysis into two parts:
 
 - Correlation between a feature and the label indicates feature importance. Values closer to 1 or -1 are generally better.
-
 - Correlation between features should ideally be low. If two features are highly correlated, they may be redundant.
 
 Beyond correlation, you can also use models to select features—such as linear models with L1/L2 regularization, Random Forest, and GBDT. These models output feature importances.
@@ -141,7 +123,7 @@ There are many machine learning models, and it’s recommended to try as many as
 - Gradient Boosted Trees
 - Neural Networks
 
-Fortunately, most of these models are available through existing libraries such as scikit-learn, XGBoost, and LightGBM, so you don’t need to reinvent the wheel. However, it is still important to understand the principles behind each model, as this will make hyperparameter tuning much easier.
+Fortunately, most of these models are available through existing libraries such as **scikit-learn**, **XGBoost**, and **LightGBM**, so you don’t need to reinvent the wheel. However, it is still important to understand the principles behind each model, as this will make hyperparameter tuning much easier.
 
 You can also use PyTorch, TensorFlow, or Keras to build custom deep learning models and experiment with your own ideas.
 
@@ -150,16 +132,7 @@ You can also use PyTorch, TensorFlow, or Keras to build custom deep learning mod
 No model is perfect—each will make mistakes. To understand what kinds of mistakes a model tends to make, we can examine the misclassified samples and summarize their common patterns. With these insights, we can train a better model.
 This process resembles Boosting in ensemble learning, but instead of letting the algorithm focus on hard samples, we do the analysis manually.
 
-By iterating through error analysis → new features → new models → more error analysis, we can continuously improve performance—and at the same time develop a stronger intuition for the data.
-
-For example, in this competition we found some misclassified samples where two questions looked very similar on the surface, but differed in the location mentioned at the end. Semantically, they were not similar, yet our model predicted them as duplicates. For instance:
-
-- Question1: Which is the best digital marketing institution in banglore?
-- Question2: Which is the best digital marketing institute in Pune?
-
-
-To help the model distinguish such cases, we removed the Longest Common Sequence from both questions and trained a new deep learning model on the remaining parts. This essentially tells the model: “When only the ending differs, don’t assume the questions are semantically similar.”
-After adding this feature, our performance improved.
+By iterating through **error analysis → new features → new models → more error analysis**, we can continuously improve performance—and at the same time develop a stronger intuition for the data.
 
 ##### 1.5.3 Hyperparameter Tuning
 
@@ -176,27 +149,20 @@ People often compare hyperparameter tuning to “alchemy” because it feels lik
 
 Since the labels of the Test Data are unknown, we must create our own validation mechanism to assess the model’s generalization ability. This is done by splitting the Train Data into two parts: a Train Set for training and a Valid Set for validation.
 
-- Simple Split
-
+- **Simple Split**
     - We can divide the Train Data into two portions, such as using 70% for training and 30% for validation. We then fixedly train and validate on these two sets.
-
     - However, the drawback is obvious:
 This method does not make full use of the entire training dataset, so the validation scores may be biased. It is typically used only when the dataset is large and model training is slow.
 
-- Cross-Validation
-
-    - Cross-validation randomly splits the entire training dataset into K folds and trains K models. Each time, K-1 folds are used as the Train Set and 1 fold is used as the Valid Set. This is commonly known as K-fold cross-validation.
-
+- **Cross-Validation**
+    - Cross-validation randomly splits the entire training dataset into K folds and trains K models. Each time, (K-1) folds are used as the Train Set and 1 fold is used as the Valid Set. This is commonly known as K-fold cross-validation.
     - You can set K to any value, but it is usually between 3 and 10.
 We evaluate performance using the mean and standard deviation of the K validation scores:
-
         - Mean reflects the model's overall performance
-
         - Std reflects how stable the model is and whether it tends to overfit
-
     - K-fold validation results are often more reliable.
 
-If the label distribution is imbalanced, you can use Stratified K-fold, which ensures that both the Train Set and Valid Set maintain approximately the same label proportion.
+If the label distribution is imbalanced, you can use **Stratified K-fold**, which ensures that both the Train Set and Valid Set maintain approximately the same label proportion.
 
 #### 1.6 Model Ensemble
 
@@ -226,14 +192,14 @@ A simple analogy is shown below:
 
 When a teacher gives two addition problems, the weighted average of answers from Student A and Student B is typically more accurate than either of their answers alone.
 
-Bagging usually does not have a clearly defined optimization objective. However, there is a method called Bagging Ensemble Selection, which uses a greedy algorithm to choose and combine models to optimize the target metric. We also used this approach in the competition.
+Bagging usually does not have a clearly defined optimization objective. However, there is a method called Bagging Ensemble Selection, which uses a greedy algorithm to choose and combine models to optimize the target metric.
 
 ##### 1.6.2 Boosting
 
 Boosting follows a “learn from mistakes” philosophy—each new base learner is trained to correct the errors made by the previous one. Well-known algorithms include AdaBoost and Gradient Boosting, and Gradient Boosted Trees are built on this concept.
 
 In section 1.2.3 (Error Analysis), we mentioned that the cycle of
-error analysis → feature creation → model training → error analysis
+**error analysis → feature creation → model training → error analysis**
 is conceptually similar to Boosting.
 
 ##### 1.6.3 Stacking
@@ -248,12 +214,10 @@ A more intuitive example using the two addition questions:
 ![blog placeholder](../../assets/Kaggle1-7.jpg)
 
 - Stage 1: Students A and B (base learners) write their answers.
-
 - Stage 2: Students C and D (meta-learners) look at A and B’s answers.
     - C believes A and B are equally smart
     - D believes A is slightly better
     - They each produce their own combined answer.
-
 - Stage 3: Student E (a higher-level meta-learner) looks at C and D’s answers and believes D is more reliable. E then outputs the final answer.
 
 Preventing **Label Leakage**
@@ -264,42 +228,36 @@ The meta-model should learn from the base models’ predictions on validation da
 To avoid leakage, each base model must use K-fold training:
 
 - Train K models
-
 - Each model predicts on its corresponding validation fold
-
 - Concatenate the K validation predictions to form the meta-model’s training features
 
 We must also generate predictions for the Test Data. There are two options:
 
 - Average the predictions from all K models
-
 - Retrain a new model using the entire Train Data and then predict Test Data
 
 For convenience, it’s best to store both validation predictions and test predictions for each learner.
 
 Another important point:
-Everyone in a team should use the same fixed K-fold split to reduce the chance of overfitting the validation sets. If you want to understand why a fixed K-fold is necessary, you can refer to the discussion linked in the original text.
+Everyone in a team should use the same fixed K-fold split to reduce the chance of overfitting the validation sets.
 
 ##### 1.6.4 Blending
 
-Blending is very similar to Stacking, but with a few key differences. You can refer to the linked resources in the original article for a detailed comparison.
+Blending is very similar to Stacking, but with a few key differences. 
 
-##### 1.7 Post-processing
+#### 1.7 Post-processing
 
 Sometimes, even when you have confirmed that the model is not overfitting and the validation performance looks good, your leaderboard score may still turn out worse than expected after submitting the test predictions. This often happens because the distribution of the training data is different from the distribution of the test data. In such cases, to improve your leaderboard score, you may need to adjust the distribution of your test predictions.
-
-For example, in this competition, the proportion of positive samples in the training data was 0.37. Naturally, the predicted positive rate was also around 0.37. However, someone discovered from a kernel that the positive rate in the test set was actually 0.165. So we adjusted our prediction distribution accordingly, which resulted in a better score. You can find the detailed method here.
-
 
 ### 2. Tools
 
 To do good work, you must first use the right tools.
 
-Besides the well-known XGBoost, one tool especially worth recommending for Kaggle competitions is LightGBM, developed by Microsoft. We also used it in this competition. LightGBM is used similarly to XGBoost, but the key difference is that XGBoost mainly tunes the tree depth, while LightGBM tunes the number of leaves. Compared with XGBoost, LightGBM trains faster and often performs slightly better as a single model.
+Besides the well-known **XGBoost**, one tool especially worth recommending for Kaggle competitions is **LightGBM**, developed by Microsoft. LightGBM is used similarly to XGBoost, but the key difference is that XGBoost mainly tunes the tree depth, while LightGBM tunes the number of leaves. Compared with XGBoost, LightGBM trains faster and often performs slightly better as a single model.
 
-Hyperparameter tuning is also an important task. A commonly used tool is Hyperopt, a general optimization framework that uses search algorithms to optimize a target function. It currently implements Random Search and Tree of Parzen Estimators (TPE).
+Hyperparameter tuning is also an important task. A commonly used tool is **Hyperopt**, a general optimization framework that uses search algorithms to optimize a target function. It currently implements Random Search and Tree of Parzen Estimators (TPE).
 
-For stacking, Kaggle Grandmaster Μαριος Μιχαηλιδης developed StackNet, a Java-based toolkit that integrates various machine learning algorithms. It’s said that using StackNet often improves performance, so it’s worth trying.
+For stacking, Kaggle Grandmaster Μαριος Μιχαηλιδης developed **StackNet**, a Java-based toolkit that integrates various machine learning algorithms. It’s said that using StackNet often improves performance, so it’s worth trying.
 
 Below is a summary of commonly used tools:
 

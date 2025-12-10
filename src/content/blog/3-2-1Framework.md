@@ -8,7 +8,9 @@ category: 'Notebooks'
 
 
 **The 3-2-1 Framework for Learning**
+
 To effectively master a new domain, adopt the "3-2-1 Framework." 
+
 
 First, choose
 #### **3 types of resources**: 
@@ -23,5 +25,5 @@ Next, commit to
 
 Finally, dedicate 
 #### **1 month to practice**. 
-- Spend this time reading, digesting information, reflecting through your outputs, and building connections.At the end of the month, evaluate your progress to decide whether to dive deeper or pivot to a new direction.
+- Spend this time reading, digesting information, reflecting through your outputs, and building connections. At the end of the month, evaluate your progress to decide whether to dive deeper or pivot to a new direction.
 

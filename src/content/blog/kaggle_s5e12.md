@@ -6,8 +6,6 @@ heroImage: '../../assets/s5e12.jpg'
 category: 'Projects'
 ---
 
-Winning a Kaggle competition is rarely about having a "secret" algorithm; it is about having a disciplined, iterative workflow and mastering a specific set of skills.
-
 Here is the step-by-step guide to winning, structured from the moment you join a competition to the final submission.
 
 ### Phase 1: The Foundation (Don't Skip This)
